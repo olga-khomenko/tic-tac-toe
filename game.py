@@ -35,7 +35,7 @@ def player_input():
 # print(f'Player 2 choice: {player2_marker}')
 
 
-# 3. Fun that takes in the board list object, a marker (X or O) and position (1-9) and assigns it to the board.
+# 3. Func that takes in the board list object, a marker (X or O) and position (1-9) and assigns it to the board.
 def place_marker(board, marker, position):
     board[position-1] = marker
 
@@ -91,71 +91,76 @@ def replay():
 # 10. Use while loops and funcs above to run the game.
 print('Welcome to my first project: TIC TAC TOE')
 
+
 # While loop to keep running the game.
+def run_game():
+    while True:
+        # Play the game
+        # set up: board, who first, choose markers(x,0)
+        the_board = [' '] * 9
+        player1_marker, player2_marker = player_input()
 
-while True:
-    # Play the game
-    # set up: board, who first, choose markers(x,0)
-    the_board = [' '] * 9
-    player1_marker, player2_marker = player_input()
+        turn = choose_first()
+        print(turn + 'will go first')
 
-    turn = choose_first()
-    print(turn + 'will go first')
+        play_game = input('Ready to play? y or n?')
 
-    play_game = input('Ready to play? y or n?')
-
-    if play_game == 'y':
-        game_on = True
-    else:
-        game_on = False
-
-    # game play
-    while game_on:
-        if turn == 'Player 1':
-            # player 1 turn
-            # 1. Show the board
-            display_board(the_board)
-            # 2. Choose a position
-            position = player_choice(the_board)
-            # 3. Place the marker on the position
-            place_marker(the_board, player1_marker, position)
-            # 4. Check if they won
-            if win_check(the_board, player1_marker):
-                display_board(the_board)
-                print('Player 1 has won!')
-                game_on = False
-            # 5. Check if there is a tie
-            else:
-                if full_board_check(the_board):
-                    display_board(the_board)
-                    print("Tie game")
-                    game_on = False
-                else:
-                    turn = "Player 2"
-            # 6. No tie no win? Next player's turn.
+        if play_game == 'y':
+            game_on = True
         else:
-            # player 2 turn
-            # 1. Show the board
-            display_board(the_board)
-            # 2. Choose a position
-            position = player_choice(the_board)
-            # 3. Place the marker on the position
-            place_marker(the_board, player2_marker, position)
-            # 4. Check if they won
-            if win_check(the_board, player2_marker):
-                display_board(the_board)
-                print('Player 2 has won!')
-                game_on = False
-            # 5. Check if there is a tie
-            else:
-                if full_board_check(the_board):
-                    display_board(the_board)
-                    print("Tie game.")
-                    game_on = False
-                else:
-                    turn = "Player 1"
-            # 6. No tie no win? Next player's turn.
+            game_on = False
 
-    if not replay():
-        break
-        # Break out of the loop on replay func ()
+        # game play
+        while game_on:
+            if turn == 'Player 1':
+                # player 1 turn
+                # 1. Show the board
+                display_board(the_board)
+                # 2. Choose a position
+                position = player_choice(the_board)
+                # 3. Place the marker on the position
+                place_marker(the_board, player1_marker, position)
+                # 4. Check if they won
+                if win_check(the_board, player1_marker):
+                    display_board(the_board)
+                    print('Player 1 has won!')
+                    game_on = False
+                # 5. Check if there is a tie
+                else:
+                    if full_board_check(the_board):
+                        display_board(the_board)
+                        print("Tie game")
+                        game_on = False
+                    else:
+                        turn = "Player 2"
+                # 6. No tie no win? Next player's turn.
+            else:
+                # player 2 turn
+                # 1. Show the board
+                display_board(the_board)
+                # 2. Choose a position
+                position = player_choice(the_board)
+                # 3. Place the marker on the position
+                place_marker(the_board, player2_marker, position)
+                # 4. Check if they won
+                if win_check(the_board, player2_marker):
+                    display_board(the_board)
+                    print('Player 2 has won!')
+                    game_on = False
+                # 5. Check if there is a tie
+                else:
+                    if full_board_check(the_board):
+                        display_board(the_board)
+                        print("Tie game.")
+                        game_on = False
+                    else:
+                        turn = "Player 1"
+                # 6. No tie no win? Next player's turn.
+
+        if not replay():
+            break
+            # Break out of the loop on replay func ()
+
+
+if __name__ == 'main':
+    run_game()

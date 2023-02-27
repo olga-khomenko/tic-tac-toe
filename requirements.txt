@@ -1,1 +1,2 @@
 ipython[display]==8.10.0
+pytest==7.2.1
