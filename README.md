@@ -1,1 +1,1 @@
-# This demo project showcase my coding skills in Python.
+This demo project showcase my coding skills in Python.
